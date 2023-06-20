@@ -51,7 +51,8 @@ Route::get('/historico', [App\Http\Controllers\UsuarioController::class, 'histor
 Route::get('/historico/{id}', [App\Http\Controllers\UsuarioController::class, 'mostrar'])->name('historico.mostrar');
 Route::get('/historico/{id}/editar', [App\Http\Controllers\UsuarioController::class, 'editar'])->name('historico.editar');
 Route::put('/historico/{id}', [App\Http\Controllers\UsuarioController::class, 'atualizar'])->name('historico.atualizar');
-Route::delete('/historico/{id}', [App\Http\Controllers\UsuarioController::class, 'excluir'])->name('historico.excluir');
+// Route::delete('/historico/{id}',[App\Http\Controllers\UsuarioController::class, 'excluir'])->name('excluir');
+Route::post('/usuarios/excluir', [UsuarioController::class, 'excluirItensSelecionados'])->name('usuarios.excluir');
 
 
 

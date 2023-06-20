@@ -150,27 +150,55 @@ class UsuarioController extends Controller
         return redirect()->route('historico')->with('success', 'Usuário atualizado com sucesso.');
     }
 
-    public function excluir($id)
+    public function excluirItensSelecionados(Request $request)
     {
-        $user = Usuario::findOrFail($id);
-        $user->delete();
-        return redirect()->route('historico')->with('success', 'Usuário excluído com sucesso.');
+        $ids = $request->input('ids');
+
+        // Exemplo de lógica para excluir os itens selecionados:
+        Usuario::whereIn('id', $ids)->delete();
+
+        return response()->json(['success' => true]);
     }
 
-    public function atualizar_usuario($id, Request $request)
-    {
-            $user = $this->updateUser($id, $request->name, $request->email, $request->cpf,
-            $request->cnpj,
-            $request->data_nascimento,
-            $request->telefone,
-            $request->cidade,
-            $request->uf,
-            $request->endereco);
-        return redirect('/cadastro');
+
+    // public function excluir($id)
+    // {
+    //     $user = Usuario::findOrFail($id);
+    //     $user->delete();
+    //     return redirect()->route('historico')->with('success', 'Usuário excluído com sucesso.');
+    // }
+
+    // public function atualizar_usuario($id, Request $request)
+    // {
+    //         $user = $this->updateUser($id, $request->name, $request->email, $request->cpf,
+    //         $request->cnpj,
+    //         $request->data_nascimento,
+    //         $request->telefone,
+    //         $request->cidade,
+    //         $request->uf,
+    //         $request->endereco);
+    //     return redirect('/cadastro');
 
        
 
-    }
+    // }
+
+    public function atualizar_usuario($id, Request $request)
+{
+    $user = Usuario::find($id);
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->cpf = $request->cpf;
+    $user->cnpj = $request->cnpj;
+    $user->data_nascimento = $request->data_nascimento;
+    $user->telefone = $request->telefone;
+    $user->cidade = $request->cidade;
+    $user->uf = $request->uf;
+    $user->endereco = $request->endereco;
+    $user->save();
+    
+    return redirect('/cadastro');
+}
 
 }
 

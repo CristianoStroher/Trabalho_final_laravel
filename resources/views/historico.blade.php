@@ -7,8 +7,6 @@
 	<title>HISTORICO</title>
 
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/historico.css')}}">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script src="resources/js/usuario.js"></script>
 
 </head>
 
@@ -26,7 +24,7 @@
 
 		<li>
 			<svg width="20%" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 13.2292L20.375 2L38.75 13.2292" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.6667 20.375V33.4417C34.6667 34.1183 34.1183 34.6667 33.4417 34.6667H7.30834C6.6318 34.6667 6.08334 34.1183 6.08334 33.4417V20.375" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-			<a href="\principal" class="menutopo">HOME</a><p>|</p></li>
+			<a href="principal" class="menutopo">HOME</a><p>|</p></li>
 
 		<li>
 			<svg width="20%" viewBox="0 0 47 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.5835 14.0455L22.0383 3.0579C22.7384 1.64737 24.7616 1.64737 25.4617 3.0579L30.9164 14.0455L43.1151 15.8184C44.6803 16.0458 45.304 17.9587 44.171 19.056L35.3456 27.6028L37.4283 39.6769C37.6959 41.2276 36.0589 42.4099 34.6584 41.6776L23.75 35.9738L12.8415 41.6776C11.4411 42.4099 9.80409 41.2276 10.0715 39.6769L12.1543 27.6028L3.32908 19.056C2.19596 17.9587 2.81977 16.0458 4.3849 15.8184L16.5835 14.0455Z" fill="#DE6B16" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -50,7 +48,7 @@
 
 		<li>
 			<svg width="22%" viewBox="0 0 54 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.125 43.1195C22.3934 45.0066 26.101 46 29.875 46C33.649 46 37.3566 45.0066 40.625 43.1195C43.8934 41.2325 46.6075 38.5184 48.4945 35.25C50.3816 31.9816 51.375 28.274 51.375 24.5C51.375 20.726 50.3816 17.0184 48.4945 13.75C46.6075 10.4816 43.8934 7.76747 40.625 5.88045C37.3566 3.99344 33.649 3 29.875 3C26.101 3 22.3934 3.99343 19.125 5.88045" stroke="#DE6B16" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.75 11.0625L3 24.5M3 24.5L13.75 37.9375M3 24.5H27.1875" stroke="#DE6B16" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-			<a href="http://localhost:8000" class="menutopo">SAIR</a></li>
+			<a href="" class="menutopo">SAIR</a></li>
 
 </ul>
 			
@@ -74,62 +72,67 @@
 
 				<div id="texto">
 
-				<!-- resources/views/historico.blade.php -->
+						<h3>Olá, consulte e controle os usuários</h3>
 
-    <div id="container">
-        <div class="textos-divs">
-            <p>Relação de Usuários</p>
-		@if (isset($usuarios))
-            <table>
-                <tr>
-					<th>Item</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>CNPJ</th>
-                    <th>Email</th>
-                    <th>Contato</th>
-                    <th>Endereço</th>
-                    <th>Cidade</th>
-                </tr>
-                @foreach ($usuarios as $usuario)
-                    <tr>
-						<td><input type="checkbox" name="selecionar[]" value="{{ $usuario->id }}"></td>
-                        <td>{{ $usuario->name }}</td>
-                        <td>{{ $usuario->cpf }}</td>
-                        <td>{{ $usuario->cnpj }}</td>
-                        <td>{{ $usuario->email }}</td>
-                        <td>{{ $usuario->telefone }}</td>
-                        <td>{{ $usuario->endereco }}</td>
-                        <td>{{ $usuario->cidade }}</td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-
-        <div class="top-divs"></div>
-
-        <div class="bottom-div">
-			<form action="{{ route('historico.excluir', $registro->id) }}" method="POST">
-				@csrf
-				@method('DELETE')
-				<button type="submit" class="btn btn-danger">Excluir</button>
-			</form>
-			
-			@method('PUT')
-
-    		<!-- Campos do formulário -->
-    		<input type="text" name="campo1" value="{{ $registro->campo1 }}" required>
-       		<!-- Adicione mais campos conforme necessário -->
-
-			<button type="submit" class="btn btn-primary">ALTERAR</button>
-					<!-- <button type="submit" id="atualizar_colaborador" class="btn btn-primary">
-						ALTERAR
-					</button> -->
-
-        </div>
-    </div>
+				</div>
 
 
+				<div id="container">
+
+				<div class="textos-divs">
+				<p>Relação de Usuários</p>
+				
+				<table>
+					<tr>
+						<th>Item</th>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th>CNPJ</th>
+						<th>Email</th>
+						<th>Contato</th>
+						<th>Endereço</th>
+						<th>Cidade</th>
+					</tr>
+					@foreach ($usuarios as $usuario)
+						<tr>
+							<td><input type="checkbox" name="selecionar[]" value="{{ $usuario->id }}"></td>
+							<td>{{ $usuario->name }}</td>
+							<td>{{ $usuario->cpf }}</td>
+							<td>{{ $usuario->cnpj }}</td>
+							<td>{{ $usuario->email }}</td>
+							<td>{{ $usuario->telefone }}</td>
+							<td>{{ $usuario->endereco }}</td>
+							<td>{{ $usuario->cidade }}</td>
+						</tr>
+					@endforeach
+				</table>
+
+			</div>
+
+
+
+					<div class="top-divs"></div>
+
+					<div class="bottom-div">
+
+															
+							
+					<button type="button" class="btn btn-sm btn-outline-danger"
+						onclick="excluirSelecionados()">
+						EXCLUIR
+					</button>
+
+									
+													
+							<button>ALTERAR</button>	
+													
+					</div>	
+
+
+
+					
+
+			</div>
 		
 								
 
@@ -139,12 +142,57 @@
 
 	</article>
 
+	<script>
+    function excluirSelecionados() {
+        // Captura todos os checkboxes selecionados
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+        // Cria um array para armazenar os IDs dos usuários selecionados
+        var ids = [];
+
+        // Itera sobre os checkboxes selecionados e coleta os IDs
+        checkboxes.forEach(function(checkbox) {
+            ids.push(checkbox.value);
+        });
+
+        // Verifica se há IDs selecionados
+        if (ids.length > 0) {
+            // Cria uma string com os IDs separados por vírgula
+            var idsString = ids.join(',');
+
+            // Realiza uma solicitação para excluir os usuários
+            // Você precisa especificar o URL adequado para a sua rota de exclusão
+            fetch('/usuarios/excluir', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ids: idsString })
+            })
+            .then(function(response) {
+                // Verifica se a exclusão foi bem-sucedida
+                if (response.ok) {
+                    // Atualiza a página ou realiza outras ações necessárias
+                    location.reload();
+                } else {
+                    // Exibe uma mensagem de erro adequada
+                    alert('Ocorreu um erro ao excluir os usuários.');
+                }
+            })
+            .catch(function(error) {
+                // Exibe uma mensagem de erro adequada
+                alert('Ocorreu um erro ao excluir os usuários: ' + error.message);
+            });
+        } else {
+            // Caso nenhum usuário seja selecionado
+            alert('Selecione pelo menos um usuário para excluir.');
+        }
+    }
+</script>
 
 
-	
+
 
 </body>
-
-
 
 </html>
