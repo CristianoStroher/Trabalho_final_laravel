@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -150,28 +151,28 @@ class UsuarioController extends Controller
         return view('historico', compact('usuarios'));
     }
 
-    public function mostrar($id)
-    {
-        $usuario = Usuario::findOrFail($id);
-        return view('mostrar', compact('usuario'));
+    // public function mostrar($id)
+    // {
+    //     $usuario = Usuario::findOrFail($id);
+    //     return view('mostrar', compact('usuario'));
 
-        $itensPaginas = 8;
-        $users = Usuario::paginate($itensPaginas);
-        return view('mostrar', ['users' => $users]);
-    }
+    //     $itensPaginas = 8;
+    //     $users = Usuario::paginate($itensPaginas);
+    //     return view('mostrar', ['users' => $users]);
+    // }
 
-    public function editar($id)
-    {
-        $usuario = Usuario::findOrFail($id);
-        return view('editar', compact('usuario'));
-    }
+    // public function editar($id)
+    // {
+    //     $usuario = Usuario::findOrFail($id);
+    //     return view('editar', compact('usuario'));
+    // }
 
-    public function atualizar(Request $request, $id)
-    {
-        $usuario = Usuario::findOrFail($id);
-        $usuario->update($request->all());
-        return redirect()->route('historico')->with('success', 'Usuário atualizado com sucesso.');
-    }
+    // public function atualizar(Request $request, $id)
+    // {
+    //     $usuario = Usuario::findOrFail($id);
+    //     $usuario->update($request->all());
+    //     return redirect()->route('historico')->with('success', 'Usuário atualizado com sucesso.');
+    // }
 
     public function excluirItensSelecionados(Request $request)
     {
@@ -184,12 +185,11 @@ class UsuarioController extends Controller
     }
 
 
-    // public function excluir($id)
-    // {
-    //     $user = Usuario::findOrFail($id);
-    //     $user->delete();
-    //     return redirect()->route('historico')->with('success', 'Usuário excluído com sucesso.');
-    // }
+    public function excluir($id)
+    {
+        Event::findOrFail($id)->delete();
+        return redirect('\historico')->with('success', 'Usuário excluído com sucesso.');
+    }
 
     // public function atualizar_usuario($id, Request $request)
     // {
