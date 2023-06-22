@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -82,8 +83,6 @@ class UsuarioController extends Controller
     }
     
     
-  
-
     private function ehCpf($cpf)
     {
         // Remove caracteres não numéricos do CPF    
@@ -119,6 +118,30 @@ class UsuarioController extends Controller
 
         return true;
     }
+
+    //login//
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+
+        ],[
+            'email.required' => 'E-mail é obrigatorio',
+            'password.required' => 'Senha é obrigatoria'
+        ]);        
+        if(Auth::attempt(["email" => $request->email, "password" => $request->password ])){
+            return view('\principal');
+        } else{
+            return redirect()->back()->with('danger', 'E-mail ou senha inválida');
+        }
+
+    }
+
+        
+
+
+
 
     //função crud usuario//
     public function historico()
@@ -183,22 +206,21 @@ class UsuarioController extends Controller
 
     // }
 
-    public function atualizar_usuario($id, Request $request)
-{
-    $user = Usuario::find($id);
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->cpf = $request->cpf;
-    $user->cnpj = $request->cnpj;
-    $user->data_nascimento = $request->data_nascimento;
-    $user->telefone = $request->telefone;
-    $user->cidade = $request->cidade;
-    $user->uf = $request->uf;
-    $user->endereco = $request->endereco;
-    $user->save();
+    // public function atualizar_usuario($id, Request $request)
+// {
+//     $user = Usuario::find($id);
+//     $user->name = $request->name;
+//     $user->email = $request->email;
+//     $user->cpf = $request->cpf;
+//     $user->cnpj = $request->cnpj;
+//     $user->data_nascimento = $request->data_nascimento;
+//     $user->telefone = $request->telefone;
+//     $user->cidade = $request->cidade;
+//     $user->uf = $request->uf;
+//     $user->endereco = $request->endereco;
+//     $user->save();
     
-    return redirect('/cadastro');
-}
+//     return redirect('/cadastro');
+// }
 
 }
-

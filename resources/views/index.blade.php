@@ -47,7 +47,7 @@
 					<li>
 						<svg width="40" height="60" viewBox="0 0 44 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 46V43.3125C3 32.9226 11.4227 24.5 21.8125 24.5C32.2024 24.5 40.625 32.9226 40.625 43.3125V46" stroke="black" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 						<path d="M21.8125 24.5C27.7495 24.5 32.5625 19.687 32.5625 13.75C32.5625 7.81294 27.7495 3 21.8125 3C15.8754 3 11.0625 7.81294 11.0625 13.75C11.0625 19.687 15.8754 24.5 21.8125 24.5Z" stroke="black" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						<a href="#" class="menutopo">ACESSAR</a></li>
+						<a href="{{ route('acesso') }}" class="menutopo">ACESSAR</a></li>
 
 			</ul>
 						

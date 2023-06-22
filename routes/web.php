@@ -21,9 +21,9 @@ Route::get('/cadastro', function () {
     return view('cadastro');
 })->name('cadastro');
 
-// Route::get('/acesso', function () {    
-//     return view('acesso');
-// })->name('acesso');
+Route::get('/acesso', function () {    
+    return view('acesso');
+})->name('acesso');
 
 Route::get('/principal', function () {    
     return view('principal');
@@ -54,6 +54,8 @@ Route::put('/historico/{id}', [App\Http\Controllers\UsuarioController::class, 'a
 // Route::delete('/historico/{id}',[App\Http\Controllers\UsuarioController::class, 'excluir'])->name('excluir');
 Route::post('/usuarios/excluir', [UsuarioController::class, 'excluirItensSelecionados'])->name('usuarios.excluir');
 
+// login //
+Route::post('/usuario', [App\Http\Controllers\UsuarioController::class, 'login'])->name('fazer.login');
 
 
 

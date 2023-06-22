@@ -88,7 +88,7 @@
 			<div id="container">
 
 				<div id="acesso">
-					<h1>Já possui acesso?</h1> <a href="#">LOGIN</a>
+					<h1>Já possui acesso?</h1> <a href="{{ route('acesso') }}">LOGIN</a>
 				</div>
 
 				<div id="esquerda">
